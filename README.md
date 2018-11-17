@@ -3,7 +3,7 @@ Public documentation for our open source drone formation projects.
 
 ## Contributing
 
-You can find information about contributing to Read the Docs at our `Contribution page <http://docs.readthedocs.io/en/latest/contribute.html>`_.
+You can find information about contributing to Read the Docs at our [Contribution page](http://docs.readthedocs.io/en/latest/contribute.html).
 
 ## License
 
