@@ -1,11 +1,27 @@
-# AMazeFlyDocs
-Public documentation for our open source drone formation projects.
+---
+description: test amaze docs
+---
 
-## Contributing
+# Test
 
-You can find information about contributing to Read the Docs at our [Contribution page](http://docs.readthedocs.io/en/latest/contribute.html).
+## Getting Super Powers
 
-## License
+Becoming a super hero is a fairly straight forward process:
 
-The AMazeFly Development Guide is available under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. See our [Github Repository](https://github.com/amazething/AMazeFlyDocs) for more details.
+```
+$ give me super-powers
+```
+
+{% hint style="info" %}
+ Super-powers are granted randomly so please submit an issue if you're not happy with yours.
+{% endhint %}
+
+Once you're strong enough, save the world:
+
+```
+// Ain't no code for that yet, sorry
+echo 'You got to trust me on this, I saved the world'
+```
+
+
 
