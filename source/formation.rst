@@ -184,7 +184,6 @@ XBee配置参考
 1.介绍
 ~~~~~~
 
-欢迎来到AmazeFly项目！AmazeFly是由华北电力大学Amaze团队设计的多无人机测试平台。
 
 AmazeFly的无人机采用\ `Pixhawk <pixhawk.org>`__\ 和\ `ArduPilot <www.ardupilot.org>`__\ 堆栈作为它们的低级飞行控制器，并使用\ `dronekit-python <python.dronekit.io>`__\ 作为高级应用程序控制。到目前为止还没有在Pixhawk和ArduPilot级别进行修改，所以这个项目完全是用Python编写的，运行在Linux环境下(例如Raspberry
 Pi)。
