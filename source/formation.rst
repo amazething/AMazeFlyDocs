@@ -189,6 +189,7 @@ AmazeFly的无人机采用\ `Pixhawk <https://pixhawk.org>`__\ 和\ `ArduPilot <
 Pi)。
 
 AMazeFly的无人机使用\ `XBee <https://www.digi.com/products/xbee-rf-solutions/2-4-ghz-modules>`__\ 模块在无人机和地面控制站之间建立高层通信网络。
+
 1.1引用
 ^^^^^^^
 Quan Yuan,Flydan项目(https://github.com/WeskerYuan/flydan)
