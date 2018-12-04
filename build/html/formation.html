@@ -99,6 +99,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#raspberrypi">RaspberryPI配置参考</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ubuntu-mate-16-04-for-raspberrypi-3b-os">1. 树莓派操作系统(注:本项目采用带有图形界面的Ubuntu MATE 16.04 for RaspberryPI 3B，其他的OS配置方法可能不同)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#uartcommunication-interface">2. 将UART启用为communication interface。</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uart-mateuart">3.修改UART配置，关闭蓝牙（注:mate系统默认蓝牙占用UART）</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pythonlinux-matepython-2-7">4. 安装Python包和Linux包。（注:mate系统自带python 2.7环境）</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ssh">5. 开启ssh。</a></li>
 </ul>
@@ -110,7 +111,23 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#id11">编队程序解析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id11">编队程序解析</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id12">1. 介绍</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">1.1 引用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">1.2 许可</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">1.3 编码规范</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id16">2. 项目的主要组成部分</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id17">3. 主要步骤</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id18">4. 如何使用</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id19">1. 建立一个飞行任务:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#onboard-py">2. 运行’onboard.py’文件：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gcs-py">3. 通过’gcs.py’控制无人机</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="#license">license</a></li>
 </ul>
 
@@ -270,8 +287,12 @@ sudo apt install gedit</li>
 <h3>2. 将UART启用为communication interface。<a class="headerlink" href="#uartcommunication-interface" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>sudo gedit /boot/cmdline.text</li>
-<li>删除语句‘console=serial0,115200’保存并退出。 ### 3.
-修改UART配置，关闭蓝牙（注:mate系统默认蓝牙占用UART）</li>
+<li>删除语句‘console=serial0,115200’保存并退出。</li>
+</ol>
+</div>
+<div class="section" id="uart-mateuart">
+<h3>3.修改UART配置，关闭蓝牙（注:mate系统默认蓝牙占用UART）<a class="headerlink" href="#uart-mateuart" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
 <li>sudo gedit /boot/config.txt</li>
 <li>修改init_uart_clock to 16MHz以及init_uart_baudrate to
 921600并删除语句前面的注释符号#。（注:飞控Telem2波特率也要相应地修改为921600）</li>
@@ -318,17 +339,30 @@ xbee numpy gps pyzmq –-upgrade</li>
 </div>
 <div class="section" id="id11">
 <h1>编队程序解析<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id12">
+<h2>1. 介绍<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
 <p>AmazeFly的无人机采用<a class="reference external" href="https://pixhawk.org">Pixhawk</a>和<a class="reference external" href="https://www.ardupilot.org">ArduPilot</a>堆栈作为它们的低级飞行控制器，并使用<a class="reference external" href="python.dronekit.io">dronekit-python</a>作为高级应用程序控制。到目前为止还没有在Pixhawk和ArduPilot级别进行修改，所以这个项目完全是用Python编写的，运行在Linux环境下(例如Raspberry
 Pi)。</p>
 <p>AMazeFly的无人机使用<a class="reference external" href="https://www.digi.com/products/xbee-rf-solutions/2-4-ghz-modules">XBee</a>模块在无人机和地面控制站之间建立高层通信网络。</p>
+<div class="section" id="id13">
+<h3>1.1 引用<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <p>Quan Yuan,Flydan项目(<a class="reference external" href="https://github.com/WeskerYuan/flydan">https://github.com/WeskerYuan/flydan</a>)</p>
+</div>
+<div class="section" id="id14">
+<h3>1.2 许可<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <p>AmazeFly项目是Apache 2.0下提供的开源许可。</p>
+</div>
+<div class="section" id="id15">
+<h3>1.3 编码规范<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <p>项目完全是按照<a class="reference external" href="https://google.github.io/styleguide/pyguide.html">谷歌Python风格指南</a>的约定用Python
 2.7编写的。</p>
+</div>
+</div>
 <hr class="docutils" />
-<p><img alt="image1" src="_images/picture7.png" />
-gcs.py:
-^^^^^^^</p>
+<div class="section" id="id16">
+<h2>2. 项目的主要组成部分<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<p><img alt="image1" src="_images/picture7.png" /></p>
+<p>1.gcs.py:</p>
 <p>用于四轴飞行器集群控制实验的地面控制站脚本。</p>
 <p>该脚本在装有Linux
 的笔记本电脑上运行。该过程应连接一个高级XBee模块，用于无人机和地面控制站之间的相互通信。XBee模块运行在API2，转义字符模式。在编写时，应使用XBee
@@ -336,6 +370,7 @@ Pro S1模块（使用DIJI
 Mesh固件）。有关更多详细信息，请参阅DIJI官方网站和数据表。目前，dronekit
 API包支持Python
 2.7。然而，Ubuntu是更好的选择，因为它使用‘apt’方式来获得分布式包。</p>
+<p>2.onboard.py:</p>
 <p>这是四轴飞行器集群控制实验的主要脚本。</p>
 <p>该脚本在板载配套计算机（例如Raspberry Pi）上运行。与此同时，
 控制通过USB或串行连接，按照MAVLink协议执行。无人驾驶飞机和地面控制站之间，应连接高级XBee模块以进行相互通信。XBee模块在API2，转义字符模式下运行。在编写时，应使用XBee
@@ -343,23 +378,38 @@ Pro S1模块（使用DIJI
 Mesh固件）。有关更多详细信息，请参阅DIJI官方网站和数据表。目前，dronekit
 API包支持Python
 2.7。然而，Ubuntu是更好的选择，因为它使用‘apt’方式来获得分布式包。</p>
+<p>3.comm.py：</p>
 <p>通信的类和函数。</p>
 <p>该模块包含用于车辆或车辆和GCS之间通信的类和函数。通常，使用XBee模块让车辆交换信息。</p>
+<p>4.mas.py：</p>
 <p>多代理系统控制算法模块。</p>
 <p>此模块包含高级代理系统控制的类和函数。这有两种主要的集群控制算法：
 2014年COLLMOT的自动推进算法和2016年的RCSNS的分散式模型预测控制。</p>
+<p>5.nav.py：</p>
 <p>导航功能。</p>
 <p>该模块包含基本的直升机导航功能，这些功能大部分处于GUIDED模式。这些代码是参考Dronekit组编写的导航功能，借鉴修改来的。</p>
+<p>6.shared.py：</p>
 <p>跨文件共享的模块。</p>
 <p>该模块包含许多不同的全局共享文件功能。它们是常量或预定义对象，具体取决于具体情况。某些属性在程序启动时被加载或实例化，并且在整个运行过程中都认为是常量。详细说明请参阅源代码注释。</p>
+<p>7.util.py：</p>
 <p>实用功能。</p>
 <p>该模块具有几个有用的功能，便于矢量计算和数据日志记录。大多数函数可以直接使用而不需要其他模块。</p>
+<p>8.missionparser.py：</p>
 <p>上传任务。</p>
+<p>9.PWMController.py：</p>
 <p>打开或关闭无人机上的LED。</p>
 <p>Mission_txt： 存放任务的目录。</p>
+</div>
+<div class="section" id="id17">
+<h2>3. 主要步骤<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
 <p>1.建立一个飞行任务，并将生成的任务TXT文件复制到无人机项目中。</p>
 <p>2.运行onboard.py文件。</p>
 <p>3.在Linux计算机运行gcs.py文件并控制无人机。</p>
+</div>
+<div class="section" id="id18">
+<h2>4. 如何使用<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id19">
+<h3>1. 建立一个飞行任务:<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <p>软件:APM Planner 2.0</p>
 <p>步骤:</p>
 <p>(1)运行该软件。</p>
@@ -389,7 +439,13 @@ API包支持Python
 <p>(7)将生成的TXT文件复制到mission_txt目录中，并按照无人机的序号进行划分。(TXT文件的名称必须是’FIRST
 .txt’、’SECOND.txt’或’THIRD.txt’。)</p>
 <p>参考:<a class="reference external" href="http://ardupilot.org/planner2/">http://ardupilot.org/planner2/</a></p>
+</div>
+<div class="section" id="onboard-py">
+<h3>2. 运行’onboard.py’文件：<a class="headerlink" href="#onboard-py" title="Permalink to this headline">¶</a></h3>
 <p>‘onboard.py’脚本会在无人机启动时自动运行。</p>
+</div>
+<div class="section" id="gcs-py">
+<h3>3. 通过’gcs.py’控制无人机<a class="headerlink" href="#gcs-py" title="Permalink to this headline">¶</a></h3>
 <p>(1)打开Linux。</p>
 <p>(2)将Xbee模块连接到Linux计算机。</p>
 <p>(3)运行终端。</p>
@@ -413,6 +469,8 @@ API包支持Python
 <p>3).按“d”键，打开LED灯。</p>
 <p>4).按“l ”键，直接降落无人机。</p>
 <p>5).按“k”键，关闭线程并重新启动。</p>
+</div>
+</div>
 </div>
 <div class="section" id="license">
 <h1>license<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h1>

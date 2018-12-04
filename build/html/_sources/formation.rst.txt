@@ -125,19 +125,21 @@ RaspberryPI配置参考
 
 1) sudo gedit /boot/cmdline.text
 
-2) 删除语句‘console=serial0,115200’保存并退出。 ### 3.
-   修改UART配置，关闭蓝牙（注:mate系统默认蓝牙占用UART）
+2) 删除语句‘console=serial0,115200’保存并退出。
 
-3) sudo gedit /boot/config.txt
 
-4) 修改init\_uart\_clock to 16MHz以及init\_uart\_baudrate to
+3.修改UART配置，关闭蓝牙（注:mate系统默认蓝牙占用UART）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1) sudo gedit /boot/config.txt
+
+2) 修改init\_uart\_clock to 16MHz以及init\_uart\_baudrate to
    921600并删除语句前面的注释符号#。（注:飞控Telem2波特率也要相应地修改为921600）
 
-5) 在文本下面添加语句‘core\_freq = 250’
+3) 在文本下面添加语句‘core\_freq = 250’
 
-6) 在文本下面添加语句‘dtoverlay=pi3-disable-bt’保存并退出
+4) 在文本下面添加语句‘dtoverlay=pi3-disable-bt’保存并退出
 
-7) sudo systemctl disable hciuart sudo reboot
+5) sudo systemctl disable hciuart sudo reboot
 
 重启后UART配置完成
 
@@ -181,38 +183,37 @@ XBee配置参考
 编队程序解析
 ============
 
-1.介绍
-~~~~~~
-
+1. 介绍
+-----------
 
 AmazeFly的无人机采用\ `Pixhawk <https://pixhawk.org>`__\ 和\ `ArduPilot <https://www.ardupilot.org>`__\ 堆栈作为它们的低级飞行控制器，并使用\ `dronekit-python <python.dronekit.io>`__\ 作为高级应用程序控制。到目前为止还没有在Pixhawk和ArduPilot级别进行修改，所以这个项目完全是用Python编写的，运行在Linux环境下(例如Raspberry
 Pi)。
 
 AMazeFly的无人机使用\ `XBee <https://www.digi.com/products/xbee-rf-solutions/2-4-ghz-modules>`__\ 模块在无人机和地面控制站之间建立高层通信网络。
 
-1.1引用
-^^^^^^^
+1.1 引用
+~~~~~~~~~~~~~~~~~~~~~
 Quan Yuan,Flydan项目(https://github.com/WeskerYuan/flydan)
 
-1.2许可
-^^^^^^^
+1.2 许可
+~~~~~~~~~~~~~~~~~~~~~
 
 AmazeFly项目是Apache 2.0下提供的开源许可。
 
-1.3编码规范
-^^^^^^^^^^^
+1.3 编码规范
+~~~~~~~~~~~~~~~~~~~~~
 
 项目完全是按照\ `谷歌Python风格指南 <https://google.github.io/styleguide/pyguide.html>`__\ 的约定用Python
 2.7编写的。
 
 --------------
 
-2.项目的主要组成部分
-~~~~~~~~~~~~~~~~~~~~
+2. 项目的主要组成部分
+------------------------
 
 |image1|
-gcs.py:
-^^^^^^^
+
+1.gcs.py:
 
 用于四轴飞行器集群控制实验的地面控制站脚本。
 
@@ -223,8 +224,7 @@ Mesh固件）。有关更多详细信息，请参阅DIJI官方网站和数据表
 API包支持Python
 2.7。然而，Ubuntu是更好的选择，因为它使用‘apt’方式来获得分布式包。
 
-onboard.py:
-^^^^^^^^^^^
+2.onboard.py:
 
 这是四轴飞行器集群控制实验的主要脚本。
 
@@ -235,56 +235,49 @@ Mesh固件）。有关更多详细信息，请参阅DIJI官方网站和数据表
 API包支持Python
 2.7。然而，Ubuntu是更好的选择，因为它使用‘apt’方式来获得分布式包。
 
-comm.py：
-^^^^^^^^^
+3.comm.py：
 
 通信的类和函数。
 
 该模块包含用于车辆或车辆和GCS之间通信的类和函数。通常，使用XBee模块让车辆交换信息。
 
-mas.py：
-^^^^^^^^
+4.mas.py：
 
 多代理系统控制算法模块。
 
 此模块包含高级代理系统控制的类和函数。这有两种主要的集群控制算法：
 2014年COLLMOT的自动推进算法和2016年的RCSNS的分散式模型预测控制。
 
-nav.py：
-^^^^^^^^
+5.nav.py：
 
 导航功能。
 
 该模块包含基本的直升机导航功能，这些功能大部分处于GUIDED模式。这些代码是参考Dronekit组编写的导航功能，借鉴修改来的。
 
-shared.py：
-^^^^^^^^^^^
+6.shared.py：
 
 跨文件共享的模块。
 
 该模块包含许多不同的全局共享文件功能。它们是常量或预定义对象，具体取决于具体情况。某些属性在程序启动时被加载或实例化，并且在整个运行过程中都认为是常量。详细说明请参阅源代码注释。
 
-util.py：
-^^^^^^^^^
+7.util.py：
 
 实用功能。
 
 该模块具有几个有用的功能，便于矢量计算和数据日志记录。大多数函数可以直接使用而不需要其他模块。
 
-missionparser.py：
-^^^^^^^^^^^^^^^^^^
+8.missionparser.py：
 
 上传任务。
 
-PWMController.py：
-^^^^^^^^^^^^^^^^^^
+9.PWMController.py：
 
 打开或关闭无人机上的LED。
 
 Mission\_txt： 存放任务的目录。
 
-3.主要步骤
-~~~~~~~~~~
+3. 主要步骤
+--------------------
 
 1.建立一个飞行任务，并将生成的任务TXT文件复制到无人机项目中。
 
@@ -292,11 +285,11 @@ Mission\_txt： 存放任务的目录。
 
 3.在Linux计算机运行gcs.py文件并控制无人机。
 
-4.如何使用
-~~~~~~~~~~
+4. 如何使用
+------------------
 
-1.建立一个飞行任务:
-^^^^^^^^^^^^^^^^^^^
+1. 建立一个飞行任务:
+~~~~~~~~~~~~~~~~~~~~~~~
 
 软件:APM Planner 2.0
 
@@ -337,13 +330,13 @@ Mission\_txt： 存放任务的目录。
 
 参考:http://ardupilot.org/planner2/
 
-2.运行'onboard.py'文件：
-^^^^^^^^^^^^^^^^^^^^^^^^
+2. 运行'onboard.py'文件：
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 'onboard.py'脚本会在无人机启动时自动运行。
 
-3.通过'gcs.py'控制无人机
-^^^^^^^^^^^^^^^^^^^^^^^^
+3. 通过'gcs.py'控制无人机
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 (1)打开Linux。
 
